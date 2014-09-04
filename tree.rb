@@ -1,4 +1,4 @@
-require './environment.rb'
+require './config/environment.rb'
 
 class Tree
   include Mongoid::Document
