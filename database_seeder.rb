@@ -17,10 +17,14 @@
 # end
 # write_file.close
 
-require './config/environment.rb'
 
+require './config/environment.rb'
+#At last count we had 2114 trees
 lines_left = 51_662 - Tree.count
 csv_file = `tail -n #{lines_left} ManhattanTree.csv`
+puts lines_left
+
+tree_names = JSON.parse(File.read("./tree_dict1.rb"))
 
 CSV.parse(csv_file) do |row|
   begin
@@ -28,7 +32,7 @@ CSV.parse(csv_file) do |row|
   address = row[6] + " " + row[7] + ", New York, NY " + row[-3]
   coords = Geocoder.coordinates(address)
   Tree.create(address: address, species: tree_names[tree_species])
-  sleep 0.2
+  sleep 0.4
   rescue
     puts "Exception raised with #{51_662 - Tree.count} lines left to process"
     raise
