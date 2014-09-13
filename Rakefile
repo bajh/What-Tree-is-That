@@ -1,7 +1,7 @@
 require './config/environment.rb'
 
 task :seed_brooklyn do
-
+  Borough.find_by(name: "Brooklyn").delete
   tree_names = JSON.parse(File.read("./tree_dict.rb"))
   brooklyn = Borough.create(name: "Brooklyn")
   CSV.parse(File.read('BrooklynTree.csv')) do |row|
@@ -21,6 +21,7 @@ task :seed_brooklyn do
 end
 
 task :seed_manhattan do
+  Borough.find_by(name: "Manhattan").delete
   tree_names = JSON.parse(File.read("./tree_dict.rb"))
   manhattan = Borough.create(name: "Manhattan")
   CSV.parse(File.read('ManhattanTree.csv')) do |row|
