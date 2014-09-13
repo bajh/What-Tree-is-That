@@ -6,6 +6,7 @@ Bundler.require(:default)
 
 require 'csv'
 require 'json'
+require 'open-uri'
 
 configure do
   Mongoid.load!('./mongoid.yml')
@@ -16,3 +17,4 @@ Geocoder::Configuration.timeout = 15
 
 require './tree.rb'
 require './app.rb'
+require './image_scraper.rb'

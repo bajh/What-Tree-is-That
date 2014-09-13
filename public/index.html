@@ -6,7 +6,11 @@
 
   <h1>What Kind of Tree is This?</h1>
 
-  <div class="answer"></div>
+  <div class="answer">
+
+
+    Disclaimer: the appearance of trees of a certain species varies drastically based on time of year and environmental conditions such as soil quality and light exposure, and thus the above picture may not perfectly reflect the tree in front of you. No guarantees are made as to the accuracy of the above tree identification, and keep in mind that the data from which these conclusions are made is updated by the NYC Parks Department "as needed." Further reseach is required be certain of this identification. Everyone should have a quality tree-identification book, such as <i>Trees of North America</i>.
+  </div>
 
 </body>
 <script type="text/javascript">
@@ -19,12 +23,13 @@
             if (response.species == null) {
               $('.answer').text("Sorry, we couldn't find any trees near you!");
             } else {
-              if (response.species == "UNK") {
+              if (response.species == "UNK" || response.species == null || response.species == "") {
                 $('.answer').text("Nobody knows!");
               } else {
-                $('.answer').text(response.species);
+                $('.answer').text(response.species + " - " + response.debug);
                 $image = $('<img>');
                 $image.attr('src', response.image);
+                $('.answer').append($image);
               }
             }
           }
