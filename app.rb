@@ -13,7 +13,6 @@ class ApplicationController < Sinatra::Base
     street = borough.streets.where(name: user.street).first
     tree_object = street.nearest_tree_to(user.building_num)
     tree_species = tree_object.species
-    binding.pry
     unless image = Image.find_by(species: tree_species)
       puts "getting image from website"
       image = ImageScraper.new(tree_species).find_image
