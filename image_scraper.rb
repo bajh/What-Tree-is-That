@@ -29,7 +29,6 @@ class ImageScraper
   end
 
   def choose_from_options
-    binding.pry
     @agent.page.search(".rowon").each do |row|
       if row.search("td")[1].text.upcase == @species
         row.search("td")[0].at("a").click
@@ -39,8 +38,6 @@ class ImageScraper
     return nil
   end
 
-
-
   def scrape_image
     image_path = @agent.page.search("a [title='click to view a large image']")[0].at("img")["src"]
     image_url = "http://plants.usda.gov" + image_path.gsub('/thumbs/', '/large/').gsub('_thp', '_lhp').gsub('_tvp', '_lvp')
@@ -48,3 +45,13 @@ class ImageScraper
   end
 
 end
+
+# @agent.page.search('.rowon').each do |row|
+#   if row.search('td')[1].text.upcase == @species
+#     puts row.search('td')[0].at('a').attr('href')
+# end
+# end
+# @agent.get()
+#     image_path = @agent.page.search("a [title='click to view a large image']")[0].at("img")["src"]
+#     image_url = "http://plants.usda.gov" + image_path.gsub('/thumbs/', '/large/').gsub('_thp', '_lhp').gsub('_tvp', '_lvp')
+#     puts image_url

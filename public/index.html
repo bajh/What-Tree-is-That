@@ -1,35 +1,43 @@
 <html>
 <head>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="slide_show.js"></script>
+  <link href='http://fonts.googleapis.com/css?family=Francois+One|Alegreya:400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
 
-  <h1>What Kind of Tree is This?</h1>
-
-  <div class="answer">
-
-
-    Disclaimer: the appearance of trees of a certain species varies drastically based on time of year and environmental conditions such as soil quality and light exposure, and thus the above picture may not perfectly reflect the tree in front of you. No guarantees are made as to the accuracy of the above tree identification, and keep in mind that the data from which these conclusions are made is updated by the NYC Parks Department "as needed." Further reseach is required be certain of this identification. Everyone should have a quality tree-identification book, such as <i>Trees of North America</i>.
+  <div class="dark-box">
   </div>
+  <h1 id="main-text">What Tree is This?</h1>
 
+  <footer>
+    Disclaimer: this site is for identifying Brooklyn and Manhattan street trees and will not work in city parks or outside these two boroughs. the appearance of trees of a certain species varies drastically based on time of year and environmental conditions such as soil quality and light exposure, and thus the above picture may not perfectly reflect the tree in front of you. No guarantees are made as to the accuracy of the above tree identification, and keep in mind that the data from which these conclusions are made is updated by the NYC Parks Department "as needed." Further reseach is required be certain of this identification. Everyone should have a quality tree-identification book, such as <i>Trees of North America</i>.
+  </footer>
 </body>
 <script type="text/javascript">
   $(function(){
+
+    slide_show = new Slideshow();
+    slide_show.cycle(2);
+
+    $('.disclaimer').on('click', function(){
+      $('footer').show();
+    });
+
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition(function(position) {
         var latitude = position.coords.latitude;
         var longitude = position.coords.longitude;
         $.post('coordinates', { latitude: latitude, longitude: longitude }, function(response){
             if (response.species == null) {
-              $('.answer').text("Sorry, we couldn't find any trees near you!");
+              $('#main-text').text("Sorry, we couldn't find any trees near you!");
             } else {
-              if (response.species == "UNK" || response.species == null || response.species == "") {
-                $('.answer').text("Nobody knows!");
+              if (response.species == "UNK" || response.species == "") {
+                $('#main-text').text("Nobody knows!");
               } else {
-                $('.answer').text(response.species + " - " + response.debug);
-                $image = $('<img>');
-                $image.attr('src', response.image);
-                $('.answer').append($image);
+                $('#main-text').text(response.species);
+                slide_show.stop(response.image);
               }
             }
           }
