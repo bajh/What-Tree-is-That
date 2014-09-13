@@ -4,7 +4,6 @@ require './user.rb'
 class ApplicationController < Sinatra::Base
 
   get '/' do
-    binding.pry
     send_file File.join('public', 'index.html')
   end
 

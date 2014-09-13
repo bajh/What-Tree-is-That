@@ -15,7 +15,7 @@ class Street
   embedded_in :borough
   embeds_many :trees
 
-  def normalize_name(street_name)
+  def self.normalize_name(street_name)
     street_name.gsub(/\s+/, ' ').upcase
   end
 
