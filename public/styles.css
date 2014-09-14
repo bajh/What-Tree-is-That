@@ -46,14 +46,40 @@ table {
 
 /** Styling **/
 
-html {background: url(tree_1.jpg) no-repeat center center fixed,
-                  url(tree_2.jpg) no-repeat center center fixed,
-                  url(tree_3.jpg) no-repeat center center fixed,
-                  url(tree_4.jpg) no-repeat center center fixed;
+#img1 {
+  background: url(tree_1.jpg) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+}
+
+#img2 {
+  background: url(tree_2.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+#img3 {
+  background: url(tree_3.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+#img4 {
+  background: url(tree_4.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+#hidden_images {
+  display:none;
 }
 
 .dark-box {

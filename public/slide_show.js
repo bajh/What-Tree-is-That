@@ -1,33 +1,25 @@
 function Slideshow() {
-  this.cycling = true;
+  this.picture = 1;
+  this.interval;
 }
 
 Slideshow.prototype.cycle = function(next_pic) {
   self = this;
-  if (this.cycling) {
-    setTimeout(function(){
-      page = $('html');
-      page.css('background','url(tree_' + next_pic + '.jpg) no-repeat center center fixed');
-      page.css('-webkit-background-size', 'cover');
-      page.css('-moz-background-size', 'cover');
-      page.css('-o-background-size', 'cover');
-      page.css('background-size', 'cover')
-      if (next_pic == 4) {
-        self.cycle(1);
-      } else {
-        self.cycle(next_pic + 1);
-      }
-    }, 650);
-  } else {
-    page.css('background','url(' + self.image + ') no-repeat center center fixed');
-    page.css('-webkit-background-size', 'cover');
-    page.css('-moz-background-size', 'cover');
-    page.css('-o-background-size', 'cover');
-    page.css('background-size', 'cover');
-  }
+  setInterval(function(){
+    $('html').attr('id', 'img' + self.picture);
+    if (self.picture == 4) {
+      self.picture = 1;
+    } else {
+      self.picture = self.picture + 1;
+    }
+  }, 650);
 }
 
 Slideshow.prototype.stop = function(image) {
-  this.cycling = false;
-  this.image = image;
+  clearInterval(this.interval);
+  page.css('background','url(' + image + ') no-repeat center center fixed');
+  page.css('-webkit-background-size', 'cover');
+  page.css('-moz-background-size', 'cover');
+  page.css('-o-background-size', 'cover');
+  page.css('background-size', 'cover');
 }

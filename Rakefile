@@ -3,6 +3,7 @@ require './config/environment.rb'
 task :seed_brooklyn do
   if borough = Borough.find_by(name: "Brooklyn")
     borough.delete
+    puts Borough.count
   end
   tree_names = JSON.parse(File.read("./tree_dict.rb"))
   brooklyn = Borough.create(name: "Brooklyn")
