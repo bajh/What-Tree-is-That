@@ -5,6 +5,15 @@ class Borough
 
   field :name, type: String
   embeds_many :streets
+  embeds_many :zips
+
+end
+
+class Zip
+  include Mongoid::Document
+
+  field :code, type: Integer
+  embeds_many :streets
 
 end
 

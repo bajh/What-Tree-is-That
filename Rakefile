@@ -54,4 +54,5 @@ task :seed_images do
   Image.create(species: "HONEYLOCUST", image: "http://plants.usda.gov/gallery/pubs/gltr_003_php.jpg")
   Image.create(species: "PIN OAK", image: "http://upload.wikimedia.org/wikipedia/commons/c/c4/Hampstead_Heath_07_Pin_Oak_%284152247041%29.jpg")
   Image.create(species: "SWEETGUM", image: "tree_2.jpg")
+  Image.create(species: "CHOKECHERRY", image: "http://upload.wikimedia.org/wikipedia/commons/0/0d/Prunus_virginiana_%28chokecherry%29_BLM.jpg")
 end
