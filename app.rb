@@ -11,7 +11,7 @@ class ApplicationController < Sinatra::Base
   post '/coordinates' do
     user = User.new(params)
     content_type :json
-    {species: user.borough, image: nil, debug: nil}
+    {species: user.borough, image: nil, debug: nil}.to_json
     # borough = Borough.find_by(name: user.borough)
     # if street = borough.streets.where(name: user.street).first
     #   tree_object = street.nearest_tree_to(user.building_num)
