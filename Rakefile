@@ -11,16 +11,16 @@ task :seed_brooklyn do
     species_code  = row[13]
     building_num  = row[6]
     street_name   = Street.normalize_name(row[7])
-    zip           = row[-3]
+    zip_code           = row[-3]
     species_name  = tree_names[species_code]
-    if street = brooklyn.streets.find_by(name: street_name)
-      street.trees.create(building_num: building_num, zip: zip, species: species_name)
+    zip = brooklyn.zips.find_or_create_by(code: zip_code)
+    if street = zip.streets.find_by(name: street_name)
+      street.trees.create(building_num: building_num, species: species_name)
     else
       puts "created #{street_name}"
-      brooklyn.streets.create(name: street_name).trees.create(building_num: building_num, zip: zip, species: species_name)
+      zip.streets.create(name: street_name).trees.create(building_num: building_num, species: species_name)
     end
   end
-  File.delete('BrooklynTree.csv')
 end
 
 task :seed_manhattan do

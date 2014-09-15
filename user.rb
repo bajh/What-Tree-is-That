@@ -3,7 +3,6 @@ class User
   def initialize(params)
     coords = params["latitude"] + ", " + params["longitude"]
     @geo_object = Geocoder.search(coords)
-    binding.pry
   end
 
   def borough

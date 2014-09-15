@@ -15,14 +15,18 @@ class Zip
   field :code, type: Integer
   embeds_many :streets
 
+  index({code: 1}, {unique: true})
+
 end
 
 class Street
   include Mongoid::Document
 
   field :name, type: String
-  embedded_in :borough
+  embedded_in :zip
   embeds_many :trees
+
+  index({code: 1}, {unique: true})
 
   def self.normalize_name(street_name)
     street_name.gsub(/\s+/, ' ').upcase
@@ -40,7 +44,6 @@ class Tree
   include Mongoid::Document
 
   field :building_num, type: String
-  field :zip, type: String
   field :species, type: String
   field :image, type: String
   embedded_in :street
