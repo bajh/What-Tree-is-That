@@ -5,6 +5,10 @@ class User
     @geo_object = Geocoder.search(coords)
   end
 
+  def zip_code
+    @geo_object.first.address_components[7]["long_name"]
+  end
+
   def borough
     @geo_object.first.address_components[3]["long_name"]
   end

@@ -15,11 +15,11 @@ Slideshow.prototype.cycle = function(next_pic) {
   }, 650);
 }
 
-Slideshow.prototype.stop = function(image) {
+Slideshow.prototype.stop = function(object) {
   clearInterval(this.interval);
-  page.css('background','url(' + image + ') no-repeat center center fixed');
-  page.css('-webkit-background-size', 'cover');
-  page.css('-moz-background-size', 'cover');
-  page.css('-o-background-size', 'cover');
-  page.css('background-size', 'cover');
+  $('html').css('background','url(' + object.image + ') no-repeat center center fixed');
+  $('html').css('-webkit-background-size', 'cover');
+  $('html').css('-moz-background-size', 'cover');
+  $('html').css('-o-background-size', 'cover');
+  $('html').css('background-size', 'cover');
 }

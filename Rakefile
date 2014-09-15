@@ -1,9 +1,14 @@
 require './config/environment.rb'
 
 task :seed_brooklyn do
+  binding.pry
   if borough = Borough.find_by(name: "Brooklyn")
     borough.delete
+    Tree.all.delete
+    Street.all.delete
     puts Borough.count
+    puts Tree.count
+    puts Street.count
   end
   tree_names = JSON.parse(File.read("./tree_dict.rb"))
   brooklyn = Borough.create(name: "Brooklyn")
@@ -11,15 +16,14 @@ task :seed_brooklyn do
     species_code  = row[13]
     building_num  = row[6]
     street_name   = Street.normalize_name(row[7])
-    zip_code           = row[-3]
+    zip_code      = row[-3]
     species_name  = tree_names[species_code]
+    brooklyn = Borough.find_by(name: "Brooklyn")
     zip = brooklyn.zips.find_or_create_by(code: zip_code)
-    if street = zip.streets.find_by(name: street_name)
-      street.trees.create(building_num: building_num, species: species_name)
-    else
-      puts "created #{street_name}"
-      zip.streets.create(name: street_name).trees.create(building_num: building_num, species: species_name)
-    end
+    street = zip.streets.find_or_create_by(name: street_name)
+    tree = street.trees.build(building_num: building_num, species: species_name)
+    street.save
+    tree.save
   end
 end
 

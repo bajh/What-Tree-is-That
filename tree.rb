@@ -4,7 +4,6 @@ class Borough
   include Mongoid::Document
 
   field :name, type: String
-  embeds_many :streets
   embeds_many :zips
 
 end
@@ -12,8 +11,9 @@ end
 class Zip
   include Mongoid::Document
 
-  field :code, type: Integer
+  field :code, type: String
   embeds_many :streets
+  embedded_in :borough
 
   index({code: 1}, {unique: true})
 
@@ -24,9 +24,9 @@ class Street
 
   field :name, type: String
   embedded_in :zip
-  embeds_many :trees
+  has_many :trees
 
-  index({code: 1}, {unique: true})
+  index({name: 1}, {unique: true})
 
   def self.normalize_name(street_name)
     street_name.gsub(/\s+/, ' ').upcase
@@ -45,8 +45,9 @@ class Tree
 
   field :building_num, type: String
   field :species, type: String
-  field :image, type: String
-  embedded_in :street
+  belongs_to :street, index: true
+
+  index({building_num: 1}, {unique: true})
 
   #Some addresses have a dash in them, which might mess up the nearest_tree function. This removes it
   def normalized_building_num

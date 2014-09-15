@@ -10,9 +10,9 @@ class ApplicationController < Sinatra::Base
 
   post '/coordinates' do
     user = User.new(params)
-    content_type :json
     borough = Borough.find_by(name: user.borough)
-    if street = borough.streets.where(name: user.street).first
+    zip_code = borough.zips.find_by(code: user.zip_code.to_i)
+    if street = zip_code.streets.where(name: user.street).first
       tree_object = street.nearest_tree_to(user.building_num)
       tree_species = tree_object.species
       unless image = Image.find_by(species: tree_species)
