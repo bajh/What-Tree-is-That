@@ -1,7 +1,6 @@
 require './config/environment.rb'
 
 task :seed_brooklyn do
-  binding.pry
   if borough = Borough.find_by(name: "Brooklyn")
     borough.delete
     Tree.all.delete
@@ -12,6 +11,7 @@ task :seed_brooklyn do
   end
   tree_names = JSON.parse(File.read("./tree_dict.rb"))
   brooklyn = Borough.create(name: "Brooklyn")
+  x = 0
   CSV.parse(File.read('BrooklynTree.csv')) do |row|
     species_code  = row[13]
     building_num  = row[6]
@@ -24,6 +24,8 @@ task :seed_brooklyn do
     tree = street.trees.build(building_num: building_num, species: species_name)
     street.save
     tree.save
+    x += 1
+    puts x
   end
 end
 
