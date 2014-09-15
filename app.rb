@@ -4,7 +4,7 @@ require './user.rb'
 class ApplicationController < Sinatra::Base
 
   get '/' do
-    binding.pry
+    puts Tree.count
     send_file File.join('public', 'index.html')
   end
 
