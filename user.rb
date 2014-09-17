@@ -1,6 +1,7 @@
 class User
 
   def initialize(params)
+    puts params
     coords = params["latitude"] + ", " + params["longitude"]
     @geo_object = Geocoder.search(coords)
   end

@@ -10,7 +10,7 @@ class ApplicationController < Sinatra::Base
   post '/coordinates' do
     user = User.new(params)
     borough = Borough.find_by(name: user.borough)
-    puts user.zip_code
+    puts "User zip code: #{user.zip_code}"
     puts borough.zips.map{|x| x.code }
     zip_code = borough.zips.find_by(code: user.zip_code)
     # if street = zip_code.streets.where(name: user.street).first
