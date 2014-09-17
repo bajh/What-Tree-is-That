@@ -11,7 +11,9 @@ class ApplicationController < Sinatra::Base
   post '/coordinates' do
     user = User.new(params)
     borough = Borough.find_by(name: user.borough)
-    zip_code = borough.zips.find_by(code: user.zip_code.to_i)
+    puts user.zip_code
+    puts borough.zips.map{|x| x.code }
+    zip_code = borough.zips.find_by(code: user.zip_code)
     if street = zip_code.streets.where(name: user.street).first
       tree_object = street.nearest_tree_to(user.building_num)
       tree_species = tree_object.species
