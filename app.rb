@@ -4,7 +4,7 @@ require './user.rb'
 class ApplicationController < Sinatra::Base
 
   get '/' do
-    puts Tree.count
+    binding.pry
     send_file File.join('public', 'index.html')
   end
 
@@ -15,11 +15,7 @@ class ApplicationController < Sinatra::Base
     if street = zip_code.streets.where(name: user.street).first
       tree_object = street.nearest_tree_to(user.building_num)
       tree_species = tree_object.species
-      unless image = Image.find_by(species: tree_species)
-        puts "getting image from website"
-        image = ImageScraper.new(tree_species).find_image
-        Image.create(species: tree_species, image: image)
-      end
+      image = Image.find_by(species: tree_species)
       content_type :json
       {species: tree_species, image: image, debug: user.building_num + user.street}.to_json
     else

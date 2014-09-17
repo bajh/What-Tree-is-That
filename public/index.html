@@ -1,6 +1,7 @@
 <html id="img1">
 <head>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="main.js"></script>
   <script src="slide_show.js"></script>
   <link href='http://fonts.googleapis.com/css?family=Francois+One|Alegreya:400italic' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" type="text/css" href="styles.css">
@@ -13,45 +14,16 @@
   </div>
   <h1 id="main-text">What Tree is This?</h1>
 
+  <div id="info">Information</div>
   <footer>
-    Disclaimer: this site is for identifying Brooklyn and Manhattan street trees and will not work in city parks or outside these two boroughs. the appearance of trees of a certain species varies drastically based on time of year and environmental conditions such as soil quality and light exposure, and thus the above picture may not perfectly reflect the tree in front of you. No guarantees are made as to the accuracy of the above tree identification, and keep in mind that the data from which these conclusions are made is updated by the NYC Parks Department "as needed." Further reseach is required be certain of this identification. Everyone should have a quality tree-identification book, such as <i>Trees of North America</i>.
+    Images are drawn from the USDA website and Wikimedia Commons. This site is for identifying Brooklyn and Manhattan street trees and will not work in city parks or outside these two boroughs. The appearance of trees within a certain species varies drastically based on time of year and environmental conditions such as soil quality and light exposure, and thus the above picture may not perfectly reflect the tree in front of you. Keep in mind that the data from which these conclusions are made is updated by the NYC Parks Department "as needed." Further reseach is required to be certain of this identification. Everyone should have a quality tree-identification book, such as <i>Trees of North America</i>.
   </footer>
   <div id="hidden_images">
-    <div id="img1"></div>
-    <div id="img2"></div>
-    <div id="img3"></div>
-    <div id="img4"></div>
+    <img src="tree_1.jpg">
+    <img src="tree_2.jpg">
+    <img src="tree_3.jpg">
+    <img src="tree_4.jpg">
   </div>
 </body>
-<script type="text/javascript">
-  $(window).load(function(){
 
-    slide_show = new Slideshow();
-    slide_show.cycle();
-
-    $('.disclaimer').on('click', function(){
-      $('footer').show();
-    });
-
-    if ("geolocation" in navigator) {
-      navigator.geolocation.getCurrentPosition(function(position) {
-        var latitude = position.coords.latitude;
-        var longitude = position.coords.longitude;
-        $.post('coordinates', { latitude: latitude, longitude: longitude }, function(response){
-            if (response.species == null) {
-              $('#main-text').text("Sorry, we couldn't find any trees near you!");
-            } else {
-              if (response.species == "UNK" || response.species == "") {
-                $('#main-text').text("Nobody knows!");
-              } else {
-                $('#main-text').text(response.species);
-                slide_show.stop(response.image);
-              }
-            }
-          }
-        )
-      })
-    }
-  })
-</script>
 </html>
