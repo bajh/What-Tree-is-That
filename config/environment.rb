@@ -15,6 +15,7 @@ end
 Geocoder::Configuration.always_raise << Geocoder::OverQueryLimitError
 Geocoder::Configuration.timeout = 15
 
-require './tree.rb'
 require './app.rb'
-require './image_scraper.rb'
+require './lib/image_scraper.rb'
+
+Dir[File.join(File.dirname(__FILE__), "../models", "*.rb")].each { |f| require f }

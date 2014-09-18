@@ -1,5 +1,4 @@
 require './config/environment.rb'
-require './user.rb'
 
 class ApplicationController < Sinatra::Base
 
