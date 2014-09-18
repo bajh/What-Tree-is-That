@@ -7,6 +7,7 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/coordinates' do
+    puts params
     user = User.new(params)
     borough = Borough.find_by(name: user.borough)
     puts "User zip code: #{user.zip_code}"
