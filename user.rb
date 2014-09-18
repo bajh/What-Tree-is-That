@@ -1,13 +1,14 @@
 class User
 
   def initialize(params)
-    puts params
     coords = params["latitude"] + ", " + params["longitude"]
     @geo_object = Geocoder.search(coords)
+    binding.pry
   end
 
   def zip_code
-    @geo_object.first.address_components[7]["long_name"]
+    @geo_object.first.address_components[-1]["long_name"]
+    # @geo_object.first.address_components[]["long_name"]
   end
 
   def borough
