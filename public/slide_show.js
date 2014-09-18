@@ -12,7 +12,7 @@ Slideshow.prototype.cycle = function(next_pic) {
     } else {
       self.picture = self.picture + 1;
     }
-  }, 650);
+  }, 750);
 }
 
 Slideshow.prototype.stop = function(object) {

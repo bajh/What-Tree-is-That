@@ -1,12 +1,10 @@
 $(window).load(function(){
 
-  $('#info').on('click', function(){
-    $(this).hide();
-    $('footer').slideToggle();
-    $('document').on('click', function(){
-      $('footer').slideToggle();
-      
-    })
+  $('footer').on('click', function(){
+    $('#info').hide();
+    $('#footer_text').slideToggle();
+    $(this).off();
+    $(this).css('cursor', 'default')
   });
 
   slide_show = new Slideshow();

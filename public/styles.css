@@ -82,19 +82,6 @@ html {
   background-size: cover;
 }
 
-#info {
-  position:fixed;
-  z-index:7;
-  width:100%;
-  bottom:0;
-  font-family: 'Alegreya', serif;
-  font-weight:400;
-  font-style: italic;
-  background:rgba(255, 255, 255, 0.6);
-  padding:12px;
-  text-align:justify;
-}
-
 #hidden_images {
   display:none;
 }
@@ -121,16 +108,35 @@ h1 {
   font-weight:400;
 }
 
-footer {
+#info {
   position:fixed;
-  z-index:3;
+  z-index:7;
+  width:100%;
+  bottom:0;
+  font-family: 'Alegreya', serif;
+  font-weight:400;
+  font-style: italic;
+  font-size:18px;
+  background:rgba(255, 255, 255, 0.6);
+  padding:12px;
+  text-align:justify;
+}
+
+footer {
+  cursor: pointer;
+  position:absolute;
+  z-index:5;
   width:100%;
   bottom:0;
   font-family: 'Alegreya', serif;
   font-weight:400;
   font-style: italic;
   background:rgba(255, 255, 255, 0.6);
-  padding:12px;
-  text-align:justify;
+}
+
+#footer_text {
+  font-size:18px;
   display:none;
+  text-align:justify;
+  margin:30px;
 }

@@ -66,12 +66,4 @@ task :seed_images do
   Image.find_by(species: "GINGKO").update_attribute(:image, "http://upload.wikimedia.org/wikipedia/commons/3/30/Feuilles_de_Gingko_Biloba.jpg")
   Image.find_by(species: "WITCH HAZEL").update_attribute(:image, "http://upload.wikimedia.org/wikipedia/commons/b/be/Hamamelis_virginiana_02.JPG")
   Image.find_by(species: "SAWTOOTH OAK").update_attribute(:image, "http://upload.wikimedia.org/wikipedia/commons/6/65/Quercus_acutissima_leaves_02_by_Line1.JPG")
-  # Image.create(species: "LONDON PLANETREE", image: "http://upload.wikimedia.org/wikipedia/commons/b/b0/London_Planetree_bark_detail.jpg")
-  # Image.create(species: "LITTLE LEAF LINDEN", image: "http://plants.usda.gov/gallery/pubs/tico2_002_php.jpg")
-  # Image.create(species: "CALLERY PEAR", image: "http://upload.wikimedia.org/wikipedia/commons/a/a0/Pyrus_calleryana_fruits_and_leaf.JPG")
-  # Image.create(species: "NORWAY MAPLE", image: "http://upload.wikimedia.org/wikipedia/commons/b/bc/Acer_platanoides_1aJPG.jpg")
-  # Image.create(species: "HONEYLOCUST", image: "http://plants.usda.gov/gallery/pubs/gltr_003_php.jpg")
-  # Image.create(species: "PIN OAK", image: "http://upload.wikimedia.org/wikipedia/commons/c/c4/Hampstead_Heath_07_Pin_Oak_%284152247041%29.jpg")
-  # Image.create(species: "SWEETGUM", image: "tree_2.jpg")
-  # Image.create(species: "CHOKECHERRY", image: "http://upload.wikimedia.org/wikipedia/commons/0/0d/Prunus_virginiana_%28chokecherry%29_BLM.jpg")
 end

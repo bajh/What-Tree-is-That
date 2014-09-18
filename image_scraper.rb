@@ -67,5 +67,3 @@ class ImageScraper
   end
 
 end
-
-puts ImageScraper.new("EASTERN COTTONWOOD").find_image
