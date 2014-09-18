@@ -37,6 +37,9 @@ class Street
     if self.zip.borough.name == "Brooklyn"
       trees_on_street_side = user_building_num.to_i.odd? ? self.trees.select{ |tree| tree.normalized_building_num.odd?} : self.trees.select{ |tree| tree.normalized_building_num.even?}
       species = trees_on_street_side.map{ |tree| [(tree.normalized_building_num - user_building_num.to_i).abs, tree] }.min[1]
+      if (species.building_num.to_i - user_building_num.to_i).abs > 10
+        species = Tree.new(species: "UNKNOWN", building_num: user_building_num)
+      end
     else 
       trees_on_street_side = user_building_num.to_i.odd? ? self.manhattantrees.select{ |tree| tree.normalized_building_num.odd?} : self.manhattantrees.select{ |tree| tree.normalized_building_num.even?}
       species = trees_on_street_side.map{ |tree| [(tree.normalized_building_num - user_building_num.to_i).abs, tree] }.min[1]
