@@ -46,10 +46,6 @@ table {
 
 /** Styling **/
 
-html {
-  z-index: 1;
-}
-
 #img1 {
   background: url(tree_1.jpg) no-repeat center center fixed;
   -webkit-background-size: cover;
@@ -93,7 +89,7 @@ html {
   position:absolute;
   top:0;
   left:0;
-  z-index:4;
+  z-index:2;
 }
 
 h1 {
@@ -106,6 +102,7 @@ h1 {
   left:10%;
   width:600px;
   font-weight:400;
+  z-index:2;
 }
 
 #info {

@@ -5,9 +5,6 @@ task :seed_brooklyn do
     borough.delete
     Tree.all.delete
     Street.all.delete
-    puts Borough.count
-    puts Tree.count
-    puts Street.count
   end
   brooklyn = Borough.create(name: "Brooklyn")
   tree_names = JSON.parse(File.read("./tree_dict.rb"))
@@ -46,7 +43,6 @@ task :seed_manhattan do
     street.save
     tree.save
     x += 1
-    puts x
   end
 end
 
@@ -56,7 +52,6 @@ task :seed_images do
   tree_names.each do |abb, long|
     image = ImageScraper.new(long).find_image
     Image.create(species: long, image: image)
-    puts "#{long}: #{image}"
   end
   Image.find_by(species: "NORWAY-CRIMSON KING MAPLE").update_attribute(:image, "http://upload.wikimedia.org/wikipedia/commons/f/fb/A_pl_CrimsonKing1.JPG")
   Image.find_by(species: "HORSECHESTNUT").update_attribute(:image, "http://plants.usda.gov/gallery/pubs/aehi_006_php.jpg")

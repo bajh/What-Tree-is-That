@@ -1,16 +1,20 @@
 $(window).load(function(){
 
-  $('footer').on('click', function(){
-    $('#info').hide();
+  $('#info').on('click', function() {
+    $(this).hide();
     $('#footer_text').slideToggle();
-    $(this).off();
-    $(this).css('cursor', 'default')
+  });
+
+  $('#footer_text').on('click', function() {
+    $(this).slideToggle(function() {
+      $('#info').slideToggle();
+    });
   });
 
   slide_show = new Slideshow();
   slide_show.cycle();
 
-  $('.disclaimer').on('click', function(){
+  $('.disclaimer').on('click', function() {
     $('footer').show();
   });
 

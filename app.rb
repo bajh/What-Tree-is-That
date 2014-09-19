@@ -7,16 +7,10 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/coordinates' do
-    puts params
     user = User.new(params)
     borough = Borough.find_by(name: user.borough)
-    puts "User zip code: #{user.zip_code}"
-    puts borough.zips.map{|x| x.code }
     zip_code = borough.zips.find_by(code: user.zip_code)
-    puts "Zip code found in db:" + zip_code.code
-    puts Manhattantree.count
     if street = zip_code.streets.where(name: user.street).first
-      puts street
       tree_object = street.nearest_tree_to(user.building_num)
       tree_species = tree_object.species
       image = Image.find_by(species: tree_species)
