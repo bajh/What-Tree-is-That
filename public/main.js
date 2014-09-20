@@ -26,7 +26,7 @@ $(window).load(function(){
           if (response.species == null) {
             $('#main-text').text("Sorry, we couldn't find any trees near you!");
           } else {
-            if (response.species == "UNK" || response.species == "") {
+            if (response.species == "UNKNOWN" || response.species == "") {
               $('#main-text').text("Nobody knows!");
             } else {
               $('#main-text').text(response.species);
