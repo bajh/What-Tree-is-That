@@ -7,7 +7,12 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/coordinates' do
-    user = User.new(params)
+    begin
+      user = User.new(params)
+    rescue
+      content_type :json
+      {species: "error", image: nil, debug: nil}.to_json
+    end
     borough = Borough.find_by(name: user.borough)
     zip_code = borough.zips.find_by(code: user.zip_code)
     if street = zip_code.streets.where(name: user.street).first

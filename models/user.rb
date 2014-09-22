@@ -2,7 +2,7 @@ class User
 
   def initialize(params)
     coords = params["latitude"] + ", " + params["longitude"]
-    @geo_object = Geocoder.search(coords)
+      @geo_object = Geocoder.search(coords)
   end
 
   def zip_code
