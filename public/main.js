@@ -42,6 +42,7 @@ $(window).load(function(){
             $('#main-text').text("Nobody knows!");
           } else {
             $('#main-text').text(response.species);
+            $('#main-text').append(response.debug);
             slide_show.stop(response.image);
           }
         }
