@@ -113,9 +113,9 @@ h1 {
   font-family: 'Alegreya', serif;
   font-weight:400;
   font-style: italic;
-  font-size:18px;
+  font-size:28px;
   background:rgba(255, 255, 255, 0.6);
-  padding:12px;
+  padding:24px;
   text-align:justify;
 }
 
@@ -132,8 +132,8 @@ footer {
 }
 
 #footer_text {
-  font-size:18px;
+  font-size:24px;
   display:none;
   text-align:justify;
-  margin:30px;
+  margin:40px;
 }
